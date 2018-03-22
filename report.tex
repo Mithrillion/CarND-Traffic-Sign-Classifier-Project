@@ -86,19 +86,20 @@ Our network uses the following architecture:
 
 The computation graph has an auxiliary boolean input \textit{is\_training} to inform the network whether to perform noise adding and dropout in forward passthrough. The whole forward pass architecture can be seen in Appendix Figure \ref{fig:arch}.
 
-[3, 3] kernels are found to perform better than [5, 5] kernels, likely due to the fact that the details in traffic signs exhibit difference on a small scale. L1 regularisation here is used to induce sparsity in the convolution kernels so they focus on different aspects of the input image. A pair high dimensional dense layer is used in conjunction with a high dropout rate to achieve a balance between expressiveness and overfitting control.
+[3, 3] kernels are found to perform better than [5, 5] kernels, likely due to the fact that the details in traffic signs exhibit difference on a small scale. L1 regularisation here is used to induce sparsity in the convolution kernels so they focus on different aspects of the input image. A pair of high dimensional dense layers are used in conjunction with a high dropout rate to achieve a balance between expressiveness and overfitting control. Batch normalisation is employed to combat rapid overfitting during training, in addition to the high dropout rate. An additional convolutional layer is found to be contributing little to the validation accuracy, so only two convolutional layers are used in this model.
 
 \section{Training and Evaluation}
 
-The network is trained on the training dataset with a batch size of 32 over 20 epochs. (When training on a GPU, the batch size can be reduced to limit VRAM usage.) Input images are shuffled each epoch. Loss and accuracy are evaluated per epoch on both the training and validation set. The training vs validation loss over training steps is shown in figure \ref{fig:loss}.
+The network is trained on the training dataset with a batch size of 32 over 20 epochs. Input images are shuffled each epoch. The network is trained with an Adam optimiser with a learning rate of $5 \times 10^{-4}$. Loss and accuracy are evaluated per epoch on both the training and validation set. The training vs validation loss over training steps is shown in figure \ref{fig:loss}.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{loss}
+	\includegraphics[width=0.65\textwidth]{loss}
 	\caption{training vs validation loss}
 	\label{fig:loss}
 \end{figure}
 
+The final training accuracies are \textbf{99.96\%} on the training set and \textbf{98.18\%} on the validation set.
 The network achieves \textbf{96.22\%} accuracy on the test dataset.
 
 \section{Performance Analysis}
