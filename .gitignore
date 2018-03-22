@@ -10,3 +10,10 @@ traffic-signs-data/
 checkpoint
 summary/train
 summary/test
+extras/*.jpg
+extras/*.jpeg
+*.aux
+*.bbl
+*.blg
+*.log
+*.gz
