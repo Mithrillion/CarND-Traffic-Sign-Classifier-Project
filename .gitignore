@@ -4,3 +4,9 @@ data
 models
 *.swp
 *.p
+*.ckpt.*
+*.zip
+traffic-signs-data/
+checkpoint
+summary/train
+summary/test
